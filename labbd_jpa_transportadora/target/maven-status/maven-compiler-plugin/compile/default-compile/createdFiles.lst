@@ -1,0 +1,17 @@
+ifma\labbd_jpa_transportadora\test\TesteCliente.class
+ifma\labbd_jpa_transportadora\util\EMFactory.class
+ifma\labbd_jpa_transportadora\modelo\Cidade.class
+ifma\labbd_jpa_transportadora\repositorio\CidadeRepository.class
+ifma\labbd_jpa_transportadora\util\DAOGenerico.class
+ifma\labbd_jpa_transportadora\repositorio\FreteRepository.class
+ifma\labbd_jpa_transportadora\repositorio\ClienteRepository.class
+ifma\labbd_jpa_transportadora\test\TesteCliente$2.class
+ifma\labbd_jpa_transportadora\test\TesteFrete$3.class
+ifma\labbd_jpa_transportadora\test\TesteCliente$1.class
+ifma\labbd_jpa_transportadora\test\TesteFrete$2.class
+ifma\labbd_jpa_transportadora\test\TesteCidade$1.class
+ifma\labbd_jpa_transportadora\test\TesteCidade.class
+ifma\labbd_jpa_transportadora\modelo\Cliente.class
+ifma\labbd_jpa_transportadora\modelo\Frete.class
+ifma\labbd_jpa_transportadora\test\TesteFrete$1.class
+ifma\labbd_jpa_transportadora\test\TesteFrete.class
