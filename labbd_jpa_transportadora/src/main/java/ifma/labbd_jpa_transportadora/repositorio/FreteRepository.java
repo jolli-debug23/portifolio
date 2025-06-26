@@ -24,17 +24,4 @@ public class FreteRepository extends DAOGenerico<Frete> {
             em.close();
         }
     }
-
-    public List<Frete> buscarFretesPorCidade(Cidade cidade) {
-        EntityManager em = EMFactory.getEntityManager();
-        try {
-            return em.createQuery(
-                "SELECT f FROM Frete f WHERE f.cidadeOrigem = :cidade OR f.cidadeDestino = :cidade",
-                Frete.class)
-                .setParameter("cidade", cidade)
-                .getResultList();
-        } finally {
-            em.close();
-        }
-    }
 }
