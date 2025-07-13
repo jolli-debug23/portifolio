@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | João Victor O. Silva</title>
+
+    <style>
+        @font-face {
+            font-family: 'tan';
+            src: url(fonts/TAN_Meringue/TAN-Meringue/TAN\ MERINGUE.ttf) format('truetype');
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+            background-color: #1a1a2e;
+        }
+
+        h1, h2, h3 {
+            font-family: 'tan';
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #ffb703;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #ffd6ff;
+        }
+
+        header {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, #7209b7 0%, #3a0ca3 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content, .section-content, .footer-content {
+            max-width: 80%;
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover, .footer-col ul li a:hover, .social-icons a:hover {
+            color: #ffb703;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ffb703;
+            transition: all 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 70%;
+            left: 15%;
+        }
+
+        main section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #10002b;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        section:nth-child(even) {
+            background-color: #240046;
+        }
+
+        section p {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: justify;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(20%, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card, .tech-badge {
+            background: #3a0ca3;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            background: #7209b7;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-category, .resume-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form, .form-group {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control, textarea.form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(58, 12, 163, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #ffb703;
+        }
+
+        .btn, .email-btn {
+            background: #ffb703;
+            color: #10002b;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn:hover, .email-btn:hover {
+            background: #ffc233;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #3a0ca3, #7209b7);
+            padding: 3rem 2rem;                     
+        }
+
+        .footer-content{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col ul li {
+            margin: 0.8rem 0;
+            list-style: none;
+        }
+
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-links {
+            margin-top: 1rem;            
+        }
+
+        .quick-links a {
+            margin: 0 0.5rem;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .quick-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            main section {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-content{
+                flex-direction: column;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(1, minmax(20%, 100%));
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-content{
+                flex-direction: column;                                
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(1, minmax(20%, 1000%));
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header>    
+        <div class="header-content">
+            <h1>João Oliveira</h1>
+            <nav>
+                <a href="#sobre-mim">Sobre mim</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#minicurriculo">Habilidades</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="sobre-mim">
+            <div class="section-content">
+                <h2>Sobre mim</h2>
+                <p>Meu nome é João Victor Oliveira Silva, sou estudante de Bacharelado em Sistemas de Informação no IFMA (Instituto Federal do Maranhão) e apaixonado por desenvolvimento de software.</p>
+                <p>Atualmente estou focado em me tornar um desenvolvedor full-stack, estudando tecnologias como Java com Spring Boot para back-end e JavaScript para front-end, além de me aprofundar em bancos de dados e arquitetura de software.</p>
+                <p>Moro em São Luís-MA e busco oportunidades para aplicar meus conhecimentos acadêmicos em projetos reais, contribuindo com soluções tecnológicas inovadoras.</p>                                   
+            </div>
+        </section>
+    
+        <section id="portfolio">
+            <div class="section-content">
+                <h2>Portfólio</h2>
+                <p>Alguns projetos que desenvolvi durante meus estudos:</p>
+                
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <h3>Sistema de Gestão Acadêmica</h3>
+                        <p>Aplicação desktop para gerenciamento de alunos, disciplinas e notas com interface gráfica intuitiva.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java Swing</span>
+                            <span class="tech-badge">JPA/Hibernate</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card">
+                        <h3>CRUD de Produtos</h3>
+                        <p>Sistema básico para cadastro, consulta, atualização e remoção de produtos com interface gráfica.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">JPA/Hibernate</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </article>
+                    
+                    <article class="project-card">
+                        <h3>Site Pessoal</h3>
+                        <p>Portfólio profissional responsivo com informações acadêmicas e projetos.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>Gerenciador de Tarefas</h3>
+                        <p>Aplicativo desktop para organização pessoal com armazenamento local de dados.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Tkinter</span>
+                            <span class="tech-badge">MySQL</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    
+        <section id="minicurriculo">
+            <div class="section-content">
+              <h2>Mini Currículo</h2>
+          
+              <div class="resume-section">
+                <h3>Formação Acadêmica</h3>
+                <ul>
+                  <li>Bacharelado em Sistemas de Informação – IFMA (2023 - atual)</li>
+                </ul>
+              </div>
+          
+              <div class="resume-section">
+                <h3>Experiência</h3>
+                <ul>
+                  <li>Estagiário de TI – Detran-MA (2024 - atual)  
+                    <br><small>Atividades: verificação de documentos digitais, organização de dados, manutenção de computadores e impressoras.</small>
+                  </li>
+                </ul>
+              </div>
+          
+              <div class="skills-section">
+                <h3>Habilidades Técnicas</h3>
+          
+                <div class="skills-category">
+                  <h4>Front-end</h4>
+                  <div class="tech-badges">
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                    <span class="tech-badge">JavaScript (básico)</span>
+                  </div>
+                </div>
+          
+                <div class="skills-category">
+                  <h4>Back-end</h4>
+                  <div class="tech-badges">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">Spring Boot (iniciante)</span>
+                    <span class="tech-badge">Python (básico)</span>
+                    <span class="tech-badge">C (acadêmico)</span>
+                  </div>
+                </div>
+          
+                <div class="skills-category">
+                  <h4>Banco de Dados</h4>
+                  <div class="tech-badges">
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">JPA / Hibernate (iniciante)</span>
+                  </div>
+                </div>
+          
+                <div class="skills-category">
+                  <h4>Ferramentas</h4>
+                  <div class="tech-badges">
+                    <span class="tech-badge">Git</span>
+                    <span class="tech-badge">Maven</span>
+                    <span class="tech-badge">Swing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+    
+        <section id="contato">
+            <div class="section-content">
+                <h2>Contato</h2>
+                <p>Estou disponível para oportunidades de estágio ou projetos colaborativos. Entre em contato!</p>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> oliveira.v@acad.ifma.edu.br</p>
+                    <p><strong>Telefone:</strong> (98) 99112-5247</p>
+                    <p><strong>Endereço:</strong> São Luís, MA</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>      
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="#sobre-mim">Sobre mim</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#minicurriculo">Habilidades</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        
+            <div class="footer-col">
+                <h3>Tecnologias</h3>
+                <ul>
+                    <li><a href="#">Java</a></li>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">Banco de Dados</a></li>
+                    <li><a href="#">Desenvolvimento Web</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Redes sociais</h3>
+                <div class="social-icons">
+                    <a href="#">💻</a>
+                    <a href="#">🔗</a>
+                    <a href="#">📷</a>
+                    <a href="#">📱</a>
+                </div>
+            </div>
+        </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Copyright - Desenvolvido por João Victor Oliveira Silva</p>
+                <div class="quick-links">
+                    <a href="#">Política de Privacidade</a> |
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>        
+    </footer>
+</body>
+</html>
