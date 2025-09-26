@@ -17,10 +17,11 @@
         
         :root {
             --primary-color: #0a0a0a;
-            --secondary-color: #1a1a1a;
-            --accent-color: #ff3e6c;
+            --secondary-color: #111111;
+            --accent-color: #1B706F;
+            --accent-light: #2A8F8D;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #b0b0b0;
             --transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
         }
         
@@ -75,23 +76,23 @@
         
         /* Estilos específicos para cada seção do header */
         #about-header {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
         }
         
         #live-action-header {
-            background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 100%);
+            background: linear-gradient(135deg, #0a0f0f 0%, #151a1a 100%);
         }
         
         #animation-header {
-            background: linear-gradient(135deg, #0a1a0a 0%, #1a2a1a 100%);
+            background: linear-gradient(135deg, #0a0f0a 0%, #151a15 100%);
         }
         
         #music-header {
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2a 100%);
+            background: linear-gradient(135deg, #0a0a0f 0%, #15151a 100%);
         }
         
         #arts-header {
-            background: linear-gradient(135deg, #1a0a1a 0%, #2a1a2a 100%);
+            background: linear-gradient(135deg, #0f0a0f 0%, #1a151a 100%);
         }
         
         .header-title {
@@ -102,6 +103,8 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards 0.3s;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px rgba(27, 112, 111, 0.3);
         }
         
         .header-subtitle {
@@ -127,6 +130,7 @@
             opacity: 0;
             animation: fadeIn 1s forwards 0.7s;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(27, 112, 111, 0.2);
         }
         
         .header-image img {
@@ -139,11 +143,14 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+            background: linear-gradient(45deg, #1a1a1a, #252525);
             color: var(--text-secondary);
             font-size: 1.2rem;
+            text-align: center;
+            gap: 15px;
         }
         
         /* Navegação do header */
@@ -165,17 +172,20 @@
             cursor: pointer;
             transition: var(--transition);
             backdrop-filter: blur(10px);
+            font-weight: 500;
         }
         
         .nav-item.active {
             background: var(--accent-color);
             color: white;
             border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(27, 112, 111, 0.5);
         }
         
         .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(27, 112, 111, 0.2);
             color: white;
+            border-color: rgba(27, 112, 111, 0.5);
         }
         
         /* Conteúdo principal */
@@ -192,11 +202,15 @@
             opacity: 0;
             transform: translateY(50px);
             transition: var(--transition);
+            min-height: 60vh;
+            display: none;
         }
         
         .content-section.active {
             opacity: 1;
             transform: translateY(0);
+            display: block;
+            animation: fadeInUp 0.8s ease forwards;
         }
         
         .section-title {
@@ -205,6 +219,7 @@
             margin-bottom: 2rem;
             position: relative;
             display: inline-block;
+            color: var(--text-primary);
         }
         
         .section-title::after {
@@ -215,6 +230,7 @@
             width: 60px;
             height: 4px;
             background-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
         }
         
         .section-content {
@@ -242,10 +258,16 @@
             margin-bottom: 1rem;
             padding-left: 1.5rem;
             position: relative;
+            transition: var(--transition);
+        }
+        
+        .highlight-list li:hover {
+            color: var(--accent-light);
+            transform: translateX(5px);
         }
         
         .highlight-list li::before {
-            content: '▸';
+            content: '✦';
             position: absolute;
             left: 0;
             color: var(--accent-color);
@@ -264,11 +286,13 @@
             overflow: hidden;
             position: relative;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .gallery-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(27, 112, 111, 0.3);
         }
         
         .gallery-item .image-placeholder {
@@ -282,6 +306,7 @@
             background-color: var(--secondary-color);
             text-align: center;
             margin-top: 5rem;
+            border-top: 1px solid rgba(27, 112, 111, 0.2);
         }
         
         .social-links {
@@ -300,16 +325,51 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .social-link:hover {
             background-color: var(--accent-color);
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(27, 112, 111, 0.4);
         }
         
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+        
+        /* Elementos esotéricos sutis */
+        .esoteric-decoration {
+            position: absolute;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .moon {
+            top: 10%;
+            right: 15%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            filter: blur(20px);
+        }
+        
+        .stars {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--accent-light), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--accent-color), transparent),
+                radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
         }
         
         /* Animações */
@@ -400,6 +460,10 @@
             .image-gallery {
                 grid-template-columns: 1fr;
             }
+            
+            .moon {
+                display: none;
+            }
         }
         
         @media (max-width: 576px) {
@@ -424,16 +488,21 @@
 </head>
 <body>
     <div class="container">
+        <!-- Decoração esotérica sutil -->
+        <div class="esoteric-decoration moon"></div>
+        <div class="esoteric-decoration stars"></div>
+        
         <!-- Header deslizante -->
         <header class="sliding-header">
             <div class="header-content" id="headerContent">
                 <!-- Seção Sobre -->
                 <section class="header-section" id="about-header">
                     <h1 class="header-title">Seu Nome</h1>
-                    <p class="header-subtitle">Designer Criativo & Entusiasta das Artes</p>
+                    <p class="header-subtitle">Explorador de narrativas visuais e sonoras</p>
                     <div class="header-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-user fa-3x"></i>
+                            <i class="fas fa-user-astronaut fa-3x"></i>
+                            <span>Imagem de perfil</span>
                         </div>
                     </div>
                 </section>
@@ -441,10 +510,11 @@
                 <!-- Seção Live-Action -->
                 <section class="header-section" id="live-action-header">
                     <h1 class="header-title">Live-Action</h1>
-                    <p class="header-subtitle">Narrativas visuais que transcendem a realidade</p>
+                    <p class="header-subtitle">Onde a realidade encontra a magia</p>
                     <div class="header-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-film fa-3x"></i>
+                            <i class="fas fa-theater-masks fa-3x"></i>
+                            <span>Cena favorita</span>
                         </div>
                     </div>
                 </section>
@@ -452,10 +522,11 @@
                 <!-- Seção Animação -->
                 <section class="header-section" id="animation-header">
                     <h1 class="header-title">Animação</h1>
-                    <p class="header-subtitle">Arte em movimento, emoção em cada frame</p>
+                    <p class="header-subtitle">Universos que respiram e sonham</p>
                     <div class="header-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-paint-brush fa-3x"></i>
+                            <i class="fas fa-dragon fa-3x"></i>
+                            <span>Arte conceitual</span>
                         </div>
                     </div>
                 </section>
@@ -463,10 +534,11 @@
                 <!-- Seção Música -->
                 <section class="header-section" id="music-header">
                     <h1 class="header-title">Música</h1>
-                    <p class="header-subtitle">A trilha sonora da vida em todas as suas formas</p>
+                    <p class="header-subtitle">A alquimia entre som e emoção</p>
                     <div class="header-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-music fa-3x"></i>
+                            <i class="fas fa-compact-disc fa-3x"></i>
+                            <span>Hiatus Kaiyote</span>
                         </div>
                     </div>
                 </section>
@@ -474,10 +546,11 @@
                 <!-- Seção Artes Plásticas -->
                 <section class="header-section" id="arts-header">
                     <h1 class="header-title">Artes Plásticas</h1>
-                    <p class="header-subtitle">Forma, cor e textura em diálogo constante</p>
+                    <p class="header-subtitle">Formas que contam histórias silenciosas</p>
                     <div class="header-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-palette fa-3x"></i>
+                            <i class="fas fa-magic fa-3x"></i>
+                            <span>Obra favorita</span>
                         </div>
                     </div>
                 </section>
@@ -500,40 +573,40 @@
                 <h2 class="section-title">Sobre Mim</h2>
                 <div class="section-content">
                     <div class="text-content">
-                        <p>Olá! Sou um entusiasta da criatividade em todas as suas formas. Minha jornada artística começou cedo, explorando diferentes meios de expressão e encontrando beleza em cada detalhe.</p>
-                        <p>Acredito que a arte tem o poder de conectar pessoas, transmitir emoções e transformar perspectivas. Minha missão é explorar essa conexão através de diversos formatos e linguagens.</p>
+                        <p>Explorador de universos paralelos através da arte. Minha jornada é uma busca constante por narrativas que transcendem o comum e revelam o extraordinário no cotidiano.</p>
+                        <p>Entre pixels, sons e formas, encontro conexões que transformam a percepção da realidade. Cada projeto é uma nova dimensão a ser descoberta.</p>
                         
                         <ul class="highlight-list">
-                            <li>Mais de 5 anos de experiência em design criativo</li>
-                            <li>Especializado em direção de arte e concept design</li>
-                            <li>Colaboração com estúdios independentes e grandes produtoras</li>
-                            <li>Exploração constante de novas técnicas e mídias</li>
+                            <li>Fascinado pela interseção entre o místico e o tecnológico</li>
+                            <li>Busco padrões e significados em todas as formas de arte</li>
+                            <li>Colecionador de experiências sensoriais incomuns</li>
+                            <li>Criador de narrativas visuais que questionam a realidade</li>
                         </ul>
                     </div>
                     
                     <div class="image-gallery">
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-camera"></i>
-                                <span>Foto Pessoal</span>
+                                <i class="fas fa-crystal-ball"></i>
+                                <span>Visão</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-award"></i>
-                                <span>Prêmios</span>
+                                <i class="fas fa-seedling"></i>
+                                <span>Processo</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-briefcase"></i>
-                                <span>Experiência</span>
+                                <i class="fas fa-infinity"></i>
+                                <span>Filosofia</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span>Formação</span>
+                                <i class="fas fa-book-open"></i>
+                                <span>Inspirações</span>
                             </div>
                         </div>
                     </div>
@@ -545,86 +618,85 @@
                 <h2 class="section-title">Live-Action</h2>
                 <div class="section-content">
                     <div class="text-content">
-                        <p>O cinema live-action é uma das minhas maiores paixões. Admiro a capacidade de contar histórias complexas através da combinação de performance, direção e fotografia.</p>
-                        <p>Meu interesse abrange desde produções independentes até blockbusters, sempre focando na narrativa e na estética visual.</p>
+                        <p>O cinema é meu portal para realidades alternativas. Prefiro narrativas que desafiam a linearidade e exploram os limites da percepção humana.</p>
+                        <p>Do surrealismo ao realismo mágico, cada filme é uma experiência sensorial que ressoa além da tela.</p>
                         
                         <ul class="highlight-list">
-                            <li>Preferência por dramas psicológicos e ficção científica</li>
-                            <li>Interesse especial em cinematografia e direção de arte</li>
-                            <li>Análise crítica de narrativas e construção de personagens</li>
-                            <li>Produções favoritas: Duna, Everything Everywhere All at Once</li>
+                            <li>Diretores que transcendem: David Lynch, Yorgos Lanthimos</li>
+                            <li>Cinematografia que transforma o comum em extraordinário</li>
+                            <li>Narrativas não-lineares e realidades paralelas</li>
+                            <li>Filmes que deixam eco: Under the Skin, The Lighthouse</li>
                         </ul>
                     </div>
                     
                     <div class="image-gallery">
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-film"></i>
-                                <span>Filmes Favoritos</span>
+                                <i class="fas fa-eye"></i>
+                                <span>Visuais</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-video"></i>
-                                <span>Diretores</span>
+                                <i class="fas fa-puzzle-piece"></i>
+                                <span>Narrativas</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-theater-masks"></i>
-                                <span>Gêneros</span>
+                                <i class="fas fa-mask"></i>
+                                <span>Personagens</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-tv"></i>
-                                <span>Séries</span>
+                                <i class="fas fa-vial"></i>
+                                <span>Experimentais</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- As outras seções seguiriam o mesmo padrão -->
             <!-- Seção Animação -->
             <section class="content-section" id="animation-content">
                 <h2 class="section-title">Animação</h2>
                 <div class="section-content">
                     <div class="text-content">
-                        <p>A animação representa a liberdade criativa em sua forma mais pura. Desde a infância, fui fascinado pela capacidade de dar vida ao imaginário através do movimento.</p>
-                        <p>Exploro tanto a animação tradicional quanto as técnicas digitais modernas, sempre com atenção à narrativa e expressão emocional.</p>
+                        <p>A animação é a materialização pura da imaginação. Cada frame é um universo completo, onde as leis da física são apenas sugestões.</p>
+                        <p>Exploro desde a meticulosidade da animação tradicional até a fluidez dos processos digitais, sempre em busca da essência narrativa.</p>
                         
                         <ul class="highlight-list">
-                            <li>Admirador do Studio Ghibli e da animação independente</li>
-                            <li>Interesse em técnicas de animação 2D e 3D</li>
-                            <li>Análise de storytelling e desenvolvimento visual</li>
-                            <li>Obras favoritas: Spirited Away, Spider-Verse, The Iron Giant</li>
+                            <li>Animação como expressão da consciência coletiva</li>
+                            <li>Estúdios que desafiam convenções: Studio Laika, Cartoon Saloon</li>
+                            <li>Arte que respira e mundos que pulsam</li>
+                            <li>Obras que são jornadas: The Wolf House, Paprika</li>
                         </ul>
                     </div>
                     
                     <div class="image-gallery">
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-dragon"></i>
-                                <span>Animações</span>
+                                <i class="fas fa-feather-alt"></i>
+                                <span>Texturas</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-pencil-alt"></i>
-                                <span>Estúdios</span>
+                                <i class="fas fa-swatchbook"></i>
+                                <span>Paletas</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-play-circle"></i>
-                                <span>Curta-metragens</span>
+                                <i class="fas fa-wind"></i>
+                                <span>Movimento</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-globe"></i>
-                                <span>Animação Mundial</span>
+                                <i class="fas fa-universal-access"></i>
+                                <span>Universos</span>
                             </div>
                         </div>
                     </div>
@@ -636,40 +708,40 @@
                 <h2 class="section-title">Música</h2>
                 <div class="section-content">
                     <div class="text-content">
-                        <p>A música é a linguagem universal que acompanha cada momento da minha vida. Minha paixão abrange desde composições clássicas até produções eletrônicas contemporâneas.</p>
-                        <p>Exploro diferentes gêneros com curiosidade, sempre em busca de novas sonoridades e experiências auditivas.</p>
+                        <p>A música é a linguagem universal que conecta dimensões. De Hiatus Kaiyote a Boards of Canada, cada som é uma frequência que ressoa em realidades paralelas.</p>
+                        <p>Exploro a música como experiência transcendental, onde ritmos e harmonias criam portais para estados alterados de consciência.</p>
                         
                         <ul class="highlight-list">
-                            <li>Gosto eclético: do jazz à eletrônica, do rock ao clássico</li>
-                            <li>Interesse em produção musical e sound design</li>
-                            <li>Colecionador de vinis e frequentador de shows</li>
-                            <li>Artistas favoritos: Tame Impala, Daft Punk, Tom Misch</li>
+                            <li>Hiatus Kaiyote: a poesia cósmica em forma de soul</li>
+                            <li>Jazz espiritual e fusões que desafiam gêneros</li>
+                            <li>Produções que são jornadas sensoriais completas</li>
+                            <li>Música como ritual: desde tribais até eletrônica orgânica</li>
                         </ul>
                     </div>
                     
                     <div class="image-gallery">
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-headphones"></i>
-                                <span>Playlists</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
                                 <i class="fas fa-record-vinyl"></i>
-                                <span>Discografia</span>
+                                <span>Discos</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-guitar"></i>
-                                <span>Instrumentos</span>
+                                <i class="fas fa-wave-square"></i>
+                                <span>Frequências</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-music"></i>
-                                <span>Gêneros</span>
+                                <i class="fas fa-microphone-alt"></i>
+                                <span>Artistas</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="image-placeholder">
+                                <i class="fas fa-compass"></i>
+                                <span>Explorações</span>
                             </div>
                         </div>
                     </div>
@@ -681,24 +753,18 @@
                 <h2 class="section-title">Artes Plásticas</h2>
                 <div class="section-content">
                     <div class="text-content">
-                        <p>As artes plásticas representam a materialização do pensamento criativo. Minha relação com essa forma de expressão é de constante admiração e aprendizado.</p>
-                        <p>Exploro tanto a arte tradicional quanto as manifestações contemporâneas, sempre com atenção aos detalhes técnicos e conceituais.</p>
+                        <p>Nas artes plásticas, encontro a materialização do invisível. Cada obra é um portal que revela camadas de significado além do aparente.</p>
+                        <p>Do simbolismo ao surrealismo, exploro como formas e cores podem transmitir conceitos que transcendem a linguagem verbal.</p>
                         
                         <ul class="highlight-list">
-                            <li>Interesse em pintura, escultura e instalações</li>
-                            <li>Exploração de técnicas mistas e arte digital</li>
-                            <li>Visita regular a galerias e museus</li>
-                            <li>Artistas de referência: Van Gogh, Frida Kahlo, Yayoi Kusama</li>
+                            <li>Arte visionária e xamânica como expressão do coletivo</li>
+                            <li>Artistas que canalizam o invisível: Hilma af Klint, Austin Osman Spare</li>
+                            <li>Instalações que são experiências sensoriais completas</li>
+                            <li>O processo criativo como ritual de transformação</li>
                         </ul>
                     </div>
                     
                     <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-paint-brush"></i>
-                                <span>Pinturas</span>
-                            </div>
-                        </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
                                 <i class="fas fa-monument"></i>
@@ -707,14 +773,20 @@
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-expand"></i>
-                                <span>Instalações</span>
+                                <i class="fas fa-paint-roller"></i>
+                                <span>Técnicas</span>
                             </div>
                         </div>
                         <div class="gallery-item">
                             <div class="image-placeholder">
-                                <i class="fas fa-digital-tachograph"></i>
-                                <span>Arte Digital</span>
+                                <i class="fas fa-vector-square"></i>
+                                <span>Composição</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="image-placeholder">
+                                <i class="fas fa-history"></i>
+                                <span>Influências</span>
                             </div>
                         </div>
                     </div>
@@ -729,16 +801,16 @@
                     <i class="fab fa-instagram"></i>
                 </a>
                 <a href="#" class="social-link">
-                    <i class="fab fa-behance"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="#" class="social-link">
                     <i class="fab fa-spotify"></i>
                 </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-letterboxd"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-artstation"></i>
+                </a>
             </div>
-            <p class="copyright">© 2023 Seu Nome. Todos os direitos reservados.</p>
+            <p class="copyright">© 2023 Seu Nome. Explorando dimensões através da arte.</p>
         </footer>
     </div>
 
@@ -748,9 +820,14 @@
             const navItems = document.querySelectorAll('.nav-item');
             const contentSections = document.querySelectorAll('.content-section');
             let currentSection = 0;
+            let isTransitioning = false;
             
             // Função para atualizar a seção ativa
             function updateActiveSection(index) {
+                if (isTransitioning || index === currentSection) return;
+                
+                isTransitioning = true;
+                
                 // Atualizar navegação
                 navItems.forEach(item => item.classList.remove('active'));
                 navItems[index].classList.add('active');
@@ -758,11 +835,19 @@
                 // Atualizar header
                 headerContent.style.transform = `translateX(-${index * 100}%)`;
                 
-                // Atualizar conteúdo
-                contentSections.forEach(section => section.classList.remove('active'));
-                contentSections[index].classList.add('active');
+                // Atualizar conteúdo com transição suave
+                contentSections[currentSection].classList.remove('active');
                 
-                currentSection = index;
+                setTimeout(() => {
+                    contentSections[currentSection].style.display = 'none';
+                    contentSections[index].style.display = 'block';
+                    
+                    setTimeout(() => {
+                        contentSections[index].classList.add('active');
+                        currentSection = index;
+                        isTransitioning = false;
+                    }, 50);
+                }, 300);
             }
             
             // Navegação por clique nos itens
@@ -783,28 +868,7 @@
                 }
             });
             
-            // Navegação por scroll (avançado)
-            let isScrolling = false;
-            
-            window.addEventListener('wheel', (e) => {
-                if (isScrolling) return;
-                
-                isScrolling = true;
-                
-                if (e.deltaY > 0) {
-                    // Scroll para baixo - próxima seção
-                    const nextSection = (currentSection + 1) % navItems.length;
-                    updateActiveSection(nextSection);
-                } else {
-                    // Scroll para cima - seção anterior
-                    const prevSection = (currentSection - 1 + navItems.length) % navItems.length;
-                    updateActiveSection(prevSection);
-                }
-                
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 1000);
-            });
+            // Removida a navegação por scroll para evitar bugs
             
             // Efeito de parallax no scroll do conteúdo
             window.addEventListener('scroll', () => {
@@ -812,14 +876,23 @@
                 const header = document.querySelector('.sliding-header');
                 
                 if (scrolled > 100) {
-                    header.style.transform = `translateY(-${scrolled * 0.1}px)`;
+                    header.style.transform = `translateY(-${scrolled * 0.05}px)`;
                 } else {
                     header.style.transform = 'translateY(0)';
                 }
             });
             
             // Inicialização
-            updateActiveSection(0);
+            contentSections.forEach((section, index) => {
+                if (index !== 0) {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // Garantir que a primeira seção esteja visível
+            setTimeout(() => {
+                contentSections[0].classList.add('active');
+            }, 100);
         });
     </script>
 </body>
