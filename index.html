@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio | Seu Nome</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Reset e configurações básicas */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
         
         :root {
             --primary-color: #0a0a0a;
-            --secondary-color: #111111;
+            --secondary-color: #1a1a1a;
             --accent-color: #1B706F;
             --accent-light: #2A8F8D;
             --text-primary: #ffffff;
             --text-secondary: #b0b0b0;
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            --transition: all 0.4s ease;
+            --border-radius: 8px;
         }
         
         html {
@@ -32,8 +32,14 @@
         body {
             background-color: var(--primary-color);
             color: var(--text-primary);
-            overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
         }
         
         /* Layout principal */
@@ -43,246 +49,294 @@
             min-height: 100vh;
         }
         
-        /* Header deslizante */
-        .sliding-header {
+        /* Header fixo */
+        .main-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            z-index: 100;
-            transition: var(--transition);
+            height: 80px;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
-        }
-        
-        .header-content {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        
-        .header-section {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Estilos específicos para cada seção do header */
-        #about-header {
-            background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
-        }
-        
-        #live-action-header {
-            background: linear-gradient(135deg, #0a0f0f 0%, #151a1a 100%);
-        }
-        
-        #animation-header {
-            background: linear-gradient(135deg, #0a0f0a 0%, #151a15 100%);
-        }
-        
-        #music-header {
-            background: linear-gradient(135deg, #0a0a0f 0%, #15151a 100%);
-        }
-        
-        #arts-header {
-            background: linear-gradient(135deg, #0f0a0f 0%, #1a151a 100%);
-        }
-        
-        .header-title {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.3s;
-            color: var(--text-primary);
-            text-shadow: 0 0 10px rgba(27, 112, 111, 0.3);
-        }
-        
-        .header-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
-        
-        .header-image {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 400px;
-            height: 500px;
-            background-color: var(--secondary-color);
-            border-radius: 10px;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeIn 1s forwards 0.7s;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(27, 112, 111, 0.2);
-        }
-        
-        .header-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #1a1a1a, #252525);
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            text-align: center;
-            gap: 15px;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 1px solid rgba(27, 112, 111, 0.2);
+            transition: var(--transition);
         }
         
-        /* Navegação do header */
-        .header-nav {
-            position: absolute;
-            bottom: 5%;
-            left: 10%;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-menu {
             display: flex;
-            gap: 1rem;
-            z-index: 10;
+            gap: 2rem;
         }
         
         .nav-item {
-            padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
             color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
+            text-decoration: none;
             font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
         }
         
-        .nav-item.active {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(27, 112, 111, 0.5);
+        .nav-item:hover, .nav-item.active {
+            color: var(--text-primary);
         }
         
-        .nav-item:hover {
-            background: rgba(27, 112, 111, 0.2);
-            color: white;
-            border-color: rgba(27, 112, 111, 0.5);
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
         }
         
-        /* Conteúdo principal */
-        .main-content {
-            margin-top: 100vh;
-            padding: 5rem 10%;
-            background-color: var(--primary-color);
-            z-index: 10;
+        .nav-item:hover::after, .nav-item.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(27, 112, 111, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(27, 112, 111, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
             position: relative;
         }
         
-        .content-section {
-            margin-bottom: 8rem;
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
             opacity: 0;
-            transform: translateY(50px);
-            transition: var(--transition);
-            min-height: 60vh;
-            display: none;
+            animation: fadeInUp 1s forwards 0.3s;
         }
         
-        .content-section.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-            animation: fadeInUp 0.8s ease forwards;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.9s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(27, 112, 111, 0.3);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 5rem 5%;
+            background-color: var(--primary-color);
+        }
+        
+        .section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 100px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
         
         .section-title {
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
-            color: var(--text-primary);
         }
         
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 4px;
             background-color: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-color);
+            border-radius: 2px;
         }
         
-        .section-content {
+        .section-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            align-items: start;
+            align-items: center;
         }
         
-        .text-content {
+        .about-text {
             font-size: 1.1rem;
             color: var(--text-secondary);
         }
         
-        .text-content p {
+        .about-text p {
             margin-bottom: 1.5rem;
         }
         
-        .highlight-list {
-            list-style: none;
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-top: 2rem;
         }
         
-        .highlight-list li {
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background-color: rgba(27, 112, 111, 0.1);
+            border: 1px solid rgba(27, 112, 111, 0.3);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--accent-light);
+        }
+        
+        .about-image {
+            height: 400px;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Interests Section */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .interest-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .interest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(27, 112, 111, 0.3);
+        }
+        
+        .interest-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .interest-title {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+        }
+        
+        .interest-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .interest-list {
+            list-style: none;
+        }
+        
+        .interest-list li {
+            margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
-            transition: var(--transition);
         }
         
-        .highlight-list li:hover {
-            color: var(--accent-light);
-            transform: translateX(5px);
-        }
-        
-        .highlight-list li::before {
-            content: '✦';
+        .interest-list li::before {
+            content: '▸';
             position: absolute;
             left: 0;
             color: var(--accent-color);
         }
         
-        .image-gallery {
+        /* Gallery Section */
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
         }
         
         .gallery-item {
-            height: 250px;
+            height: 200px;
             background-color: var(--secondary-color);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             position: relative;
             transition: var(--transition);
@@ -290,86 +344,138 @@
         }
         
         .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: rgba(27, 112, 111, 0.3);
+            transform: scale(1.03);
         }
         
-        .gallery-item .image-placeholder {
+        .gallery-placeholder {
+            width: 100%;
             height: 100%;
-            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: linear-gradient(45deg, #1a1a1a, #252525);
+            color: var(--text-secondary);
         }
         
-        /* Footer */
-        footer {
-            padding: 3rem 10%;
-            background-color: var(--secondary-color);
-            text-align: center;
-            margin-top: 5rem;
-            border-top: 1px solid rgba(27, 112, 111, 0.2);
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(27, 112, 111, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-text h3 {
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-text p {
+            color: var(--text-secondary);
         }
         
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .social-link {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            text-decoration: none;
         }
         
         .social-link:hover {
             background-color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(27, 112, 111, 0.4);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-label {
+            font-weight: 500;
+        }
+        
+        .form-input, .form-textarea {
+            padding: 0.8rem 1rem;
+            background-color: var(--secondary-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: 'Open Sans', sans-serif;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background-color: var(--secondary-color);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .copyright {
             color: var(--text-secondary);
+            margin-top: 2rem;
             font-size: 0.9rem;
-        }
-        
-        /* Elementos esotéricos sutis */
-        .esoteric-decoration {
-            position: absolute;
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .moon {
-            top: 10%;
-            right: 15%;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-            filter: blur(20px);
-        }
-        
-        .stars {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 40px 70px, var(--accent-light), transparent),
-                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-                radial-gradient(1px 1px at 130px 80px, var(--accent-color), transparent),
-                radial-gradient(2px 2px at 160px 30px, #eee, transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
         }
         
         /* Animações */
@@ -380,519 +486,398 @@
             }
         }
         
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        
         /* Responsividade */
-        @media (max-width: 1200px) {
-            .header-title {
-                font-size: 4rem;
-            }
-            
-            .header-image {
-                width: 350px;
-                height: 450px;
-            }
-        }
-        
         @media (max-width: 992px) {
-            .header-title {
-                font-size: 3.5rem;
-            }
-            
-            .header-image {
-                width: 300px;
-                height: 400px;
-            }
-            
-            .section-content {
+            .about-content, .contact-content {
                 grid-template-columns: 1fr;
             }
             
-            .image-gallery {
-                grid-template-columns: repeat(2, 1fr);
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
             }
         }
         
         @media (max-width: 768px) {
-            .header-section {
-                padding: 0 5%;
-                text-align: center;
+            .nav-menu {
+                display: none;
             }
             
-            .header-title {
-                font-size: 2.5rem;
+            .hero-title {
+                font-size: 2.2rem;
             }
             
-            .header-subtitle {
+            .hero-subtitle {
                 font-size: 1.2rem;
             }
             
-            .header-image {
-                position: relative;
-                right: auto;
-                top: auto;
-                transform: none;
-                width: 100%;
-                max-width: 300px;
-                height: 350px;
-                margin: 2rem auto;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .header-nav {
-                left: 50%;
-                transform: translateX(-50%);
-                flex-wrap: wrap;
-                justify-content: center;
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                height: 80vh;
             }
             
             .main-content {
                 padding: 3rem 5%;
             }
             
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .image-gallery {
+            .gallery-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .moon {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .header-title {
-                font-size: 2rem;
-            }
-            
-            .header-subtitle {
-                font-size: 1rem;
-            }
-            
-            .nav-item {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Decoração esotérica sutil -->
-        <div class="esoteric-decoration moon"></div>
-        <div class="esoteric-decoration stars"></div>
-        
-        <!-- Header deslizante -->
-        <header class="sliding-header">
-            <div class="header-content" id="headerContent">
-                <!-- Seção Sobre -->
-                <section class="header-section" id="about-header">
-                    <h1 class="header-title">Seu Nome</h1>
-                    <p class="header-subtitle">Explorador de narrativas visuais e sonoras</p>
-                    <div class="header-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-user-astronaut fa-3x"></i>
-                            <span>Imagem de perfil</span>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Seção Live-Action -->
-                <section class="header-section" id="live-action-header">
-                    <h1 class="header-title">Live-Action</h1>
-                    <p class="header-subtitle">Onde a realidade encontra a magia</p>
-                    <div class="header-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-theater-masks fa-3x"></i>
-                            <span>Cena favorita</span>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Seção Animação -->
-                <section class="header-section" id="animation-header">
-                    <h1 class="header-title">Animação</h1>
-                    <p class="header-subtitle">Universos que respiram e sonham</p>
-                    <div class="header-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-dragon fa-3x"></i>
-                            <span>Arte conceitual</span>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Seção Música -->
-                <section class="header-section" id="music-header">
-                    <h1 class="header-title">Música</h1>
-                    <p class="header-subtitle">A alquimia entre som e emoção</p>
-                    <div class="header-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-compact-disc fa-3x"></i>
-                            <span>Hiatus Kaiyote</span>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Seção Artes Plásticas -->
-                <section class="header-section" id="arts-header">
-                    <h1 class="header-title">Artes Plásticas</h1>
-                    <p class="header-subtitle">Formas que contam histórias silenciosas</p>
-                    <div class="header-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-magic fa-3x"></i>
-                            <span>Obra favorita</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            
-            <!-- Navegação do header -->
-            <nav class="header-nav">
-                <div class="nav-item active" data-target="0">Sobre</div>
-                <div class="nav-item" data-target="1">Live-Action</div>
-                <div class="nav-item" data-target="2">Animação</div>
-                <div class="nav-item" data-target="3">Música</div>
-                <div class="nav-item" data-target="4">Artes</div>
+        <!-- Header -->
+        <header class="main-header">
+            <a href="#" class="logo">Portfólio<span>.</span></a>
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active">Início</a>
+                <a href="#about" class="nav-item">Sobre</a>
+                <a href="#interests" class="nav-item">Interesses</a>
+                <a href="#gallery" class="nav-item">Galeria</a>
+                <a href="#contact" class="nav-item">Contato</a>
             </nav>
         </header>
         
-        <!-- Conteúdo principal -->
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">Olá, eu sou <span style="color: var(--accent-color);">Seu Nome</span></h1>
+                <p class="hero-subtitle">Designer & Entusiasta Criativo</p>
+                <p class="hero-description">Sou apaixonado por live-action, animação, música e artes plásticas. Este portfólio é um reflexo dos meus interesses e experiências.</p>
+                <a href="#about" class="btn">Conheça mais</a>
+            </div>
+        </section>
+        
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Seção Sobre -->
-            <section class="content-section active" id="about-content">
-                <h2 class="section-title">Sobre Mim</h2>
-                <div class="section-content">
-                    <div class="text-content">
-                        <p>Explorador de universos paralelos através da arte. Minha jornada é uma busca constante por narrativas que transcendem o comum e revelam o extraordinário no cotidiano.</p>
-                        <p>Entre pixels, sons e formas, encontro conexões que transformam a percepção da realidade. Cada projeto é uma nova dimensão a ser descoberta.</p>
+            <!-- About Section -->
+            <section class="section" id="about">
+                <div class="section-header">
+                    <h2 class="section-title">Sobre Mim</h2>
+                    <p class="section-subtitle">Um pouco da minha jornada e experiências</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Olá! Meu nome é [Seu Nome] e sou um entusiasta criativo com paixão por diversas formas de arte e expressão. Minha jornada começou cedo, explorando diferentes meios de comunicação visual e sonora.</p>
+                        <p>Ao longo dos anos, desenvolvi habilidades em design, animação e produção musical, sempre buscando conectar diferentes disciplinas para criar experiências únicas.</p>
+                        <p>Acredito que a criatividade é uma ferramenta poderosa para conectar pessoas e ideias, e estou sempre em busca de novos projetos e colaborações.</p>
                         
-                        <ul class="highlight-list">
-                            <li>Fascinado pela interseção entre o místico e o tecnológico</li>
-                            <li>Busco padrões e significados em todas as formas de arte</li>
-                            <li>Colecionador de experiências sensoriais incomuns</li>
-                            <li>Criador de narrativas visuais que questionam a realidade</li>
+                        <div class="skills">
+                            <span class="skill-tag">Design Gráfico</span>
+                            <span class="skill-tag">Animação</span>
+                            <span class="skill-tag">Edição de Vídeo</span>
+                            <span class="skill-tag">Produção Musical</span>
+                            <span class="skill-tag">Ilustração</span>
+                            <span class="skill-tag">Fotografia</span>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <i class="fas fa-user fa-5x" style="color: var(--accent-color);"></i>
+                        <p>Sua foto aqui</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Interests Section -->
+            <section class="section" id="interests">
+                <div class="section-header">
+                    <h2 class="section-title">Meus Interesses</h2>
+                    <p class="section-subtitle">As áreas que mais me inspiram e motivam</p>
+                </div>
+                <div class="interests-grid">
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3 class="interest-title">Live-Action</h3>
+                        <p class="interest-description">Adoro cinema e produções audiovisuais que contam histórias cativantes através de performances reais.</p>
+                        <ul class="interest-list">
+                            <li>Drama e ficção científica</li>
+                            <li>Diretores: Villeneuve, Nolan, Wes Anderson</li>
+                            <li>Produções favoritas: Duna, Interestelar</li>
                         </ul>
                     </div>
                     
-                    <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-crystal-ball"></i>
-                                <span>Visão</span>
-                            </div>
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-paint-brush"></i>
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-seedling"></i>
-                                <span>Processo</span>
-                            </div>
+                        <h3 class="interest-title">Animação</h3>
+                        <p class="interest-description">A animação me fascina pela liberdade criativa e pela capacidade de dar vida ao imaginário.</p>
+                        <ul class="interest-list">
+                            <li>Animação tradicional e digital</li>
+                            <li>Estúdios: Ghibli, Pixar, Studio Laika</li>
+                            <li>Favoritos: Spirited Away, Spider-Verse</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-music"></i>
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-infinity"></i>
-                                <span>Filosofia</span>
-                            </div>
+                        <h3 class="interest-title">Música</h3>
+                        <p class="interest-description">A música é a trilha sonora da minha vida, explorando diferentes gêneros e descobrindo novos artistas.</p>
+                        <ul class="interest-list">
+                            <li>Indie rock, jazz, eletrônica</li>
+                            <li>Artistas: Tame Impala, Hiatus Kaiyote</li>
+                            <li>Produção e composição</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="interest-card">
+                        <div class="interest-icon">
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-book-open"></i>
-                                <span>Inspirações</span>
-                            </div>
+                        <h3 class="interest-title">Artes Plásticas</h3>
+                        <p class="interest-description">As artes plásticas me encantam pela capacidade de transmitir emoções através de formas e cores.</p>
+                        <ul class="interest-list">
+                            <li>Pintura e ilustração digital</li>
+                            <li>Artistas: Van Gogh, Frida Kahlo</li>
+                            <li>Exploração de técnicas mistas</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Gallery Section -->
+            <section class="section" id="gallery">
+                <div class="section-header">
+                    <h2 class="section-title">Galeria</h2>
+                    <p class="section-subtitle">Alguns dos meus trabalhos e inspirações</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-image fa-2x"></i>
+                            <p>Projeto de Design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-video fa-2x"></i>
+                            <p>Animacao</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-music fa-2x"></i>
+                            <p>Projeto Musical</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-paint-brush fa-2x"></i>
+                            <p>Arte Digital</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-camera fa-2x"></i>
+                            <p>Fotografia</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">
+                            <i class="fas fa-code fa-2x"></i>
+                            <p>Projeto Web</p>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- Seção Live-Action -->
-            <section class="content-section" id="live-action-content">
-                <h2 class="section-title">Live-Action</h2>
-                <div class="section-content">
-                    <div class="text-content">
-                        <p>O cinema é meu portal para realidades alternativas. Prefiro narrativas que desafiam a linearidade e exploram os limites da percepção humana.</p>
-                        <p>Do surrealismo ao realismo mágico, cada filme é uma experiência sensorial que ressoa além da tela.</p>
-                        
-                        <ul class="highlight-list">
-                            <li>Diretores que transcendem: David Lynch, Yorgos Lanthimos</li>
-                            <li>Cinematografia que transforma o comum em extraordinário</li>
-                            <li>Narrativas não-lineares e realidades paralelas</li>
-                            <li>Filmes que deixam eco: Under the Skin, The Lighthouse</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-eye"></i>
-                                <span>Visuais</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-puzzle-piece"></i>
-                                <span>Narrativas</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-mask"></i>
-                                <span>Personagens</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-vial"></i>
-                                <span>Experimentais</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Contact Section -->
+            <section class="section" id="contact">
+                <div class="section-header">
+                    <h2 class="section-title">Contato</h2>
+                    <p class="section-subtitle">Vamos conversar sobre ideias e projetos</p>
                 </div>
-            </section>
-            
-            <!-- Seção Animação -->
-            <section class="content-section" id="animation-content">
-                <h2 class="section-title">Animação</h2>
-                <div class="section-content">
-                    <div class="text-content">
-                        <p>A animação é a materialização pura da imaginação. Cada frame é um universo completo, onde as leis da física são apenas sugestões.</p>
-                        <p>Exploro desde a meticulosidade da animação tradicional até a fluidez dos processos digitais, sempre em busca da essência narrativa.</p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>seuemail@exemplo.com</p>
+                            </div>
+                        </div>
                         
-                        <ul class="highlight-list">
-                            <li>Animação como expressão da consciência coletiva</li>
-                            <li>Estúdios que desafiam convenções: Studio Laika, Cartoon Saloon</li>
-                            <li>Arte que respira e mundos que pulsam</li>
-                            <li>Obras que são jornadas: The Wolf House, Paprika</li>
-                        </ul>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Telefone</h3>
+                                <p>(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Localização</h3>
+                                <p>São Paulo, Brasil</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
                     </div>
                     
-                    <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-feather-alt"></i>
-                                <span>Texturas</span>
-                            </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nome</label>
+                            <input type="text" id="name" class="form-input" placeholder="Seu nome">
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-swatchbook"></i>
-                                <span>Paletas</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-wind"></i>
-                                <span>Movimento</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-universal-access"></i>
-                                <span>Universos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Seção Música -->
-            <section class="content-section" id="music-content">
-                <h2 class="section-title">Música</h2>
-                <div class="section-content">
-                    <div class="text-content">
-                        <p>A música é a linguagem universal que conecta dimensões. De Hiatus Kaiyote a Boards of Canada, cada som é uma frequência que ressoa em realidades paralelas.</p>
-                        <p>Exploro a música como experiência transcendental, onde ritmos e harmonias criam portais para estados alterados de consciência.</p>
                         
-                        <ul class="highlight-list">
-                            <li>Hiatus Kaiyote: a poesia cósmica em forma de soul</li>
-                            <li>Jazz espiritual e fusões que desafiam gêneros</li>
-                            <li>Produções que são jornadas sensoriais completas</li>
-                            <li>Música como ritual: desde tribais até eletrônica orgânica</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-record-vinyl"></i>
-                                <span>Discos</span>
-                            </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="seuemail@exemplo.com">
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-wave-square"></i>
-                                <span>Frequências</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-microphone-alt"></i>
-                                <span>Artistas</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-compass"></i>
-                                <span>Explorações</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Seção Artes Plásticas -->
-            <section class="content-section" id="arts-content">
-                <h2 class="section-title">Artes Plásticas</h2>
-                <div class="section-content">
-                    <div class="text-content">
-                        <p>Nas artes plásticas, encontro a materialização do invisível. Cada obra é um portal que revela camadas de significado além do aparente.</p>
-                        <p>Do simbolismo ao surrealismo, exploro como formas e cores podem transmitir conceitos que transcendem a linguagem verbal.</p>
                         
-                        <ul class="highlight-list">
-                            <li>Arte visionária e xamânica como expressão do coletivo</li>
-                            <li>Artistas que canalizam o invisível: Hilma af Klint, Austin Osman Spare</li>
-                            <li>Instalações que são experiências sensoriais completas</li>
-                            <li>O processo criativo como ritual de transformação</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="image-gallery">
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-monument"></i>
-                                <span>Esculturas</span>
-                            </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Assunto</label>
+                            <input type="text" id="subject" class="form-input" placeholder="Assunto da mensagem">
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-paint-roller"></i>
-                                <span>Técnicas</span>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensagem</label>
+                            <textarea id="message" class="form-textarea" placeholder="Sua mensagem"></textarea>
                         </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-vector-square"></i>
-                                <span>Composição</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div class="image-placeholder">
-                                <i class="fas fa-history"></i>
-                                <span>Influências</span>
-                            </div>
-                        </div>
-                    </div>
+                        
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
                 </div>
             </section>
         </main>
         
         <!-- Footer -->
         <footer>
-            <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-spotify"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-letterboxd"></i>
-                </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-artstation"></i>
-                </a>
+            <div class="footer-content">
+                <a href="#" class="logo">Portfólio<span>.</span></a>
+                <p>Obrigado por visitar meu portfólio. Sinta-se à vontade para entrar em contato!</p>
+                <p class="copyright">© 2023 Seu Nome. Todos os direitos reservados.</p>
             </div>
-            <p class="copyright">© 2023 Seu Nome. Explorando dimensões através da arte.</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const headerContent = document.getElementById('headerContent');
+            // Navegação suave
             const navItems = document.querySelectorAll('.nav-item');
-            const contentSections = document.querySelectorAll('.content-section');
-            let currentSection = 0;
-            let isTransitioning = false;
+            const sections = document.querySelectorAll('.section, .hero');
             
-            // Função para atualizar a seção ativa
-            function updateActiveSection(index) {
-                if (isTransitioning || index === currentSection) return;
+            // Atualizar navegação ativa ao scroll
+            function updateActiveNav() {
+                let current = '';
                 
-                isTransitioning = true;
-                
-                // Atualizar navegação
-                navItems.forEach(item => item.classList.remove('active'));
-                navItems[index].classList.add('active');
-                
-                // Atualizar header
-                headerContent.style.transform = `translateX(-${index * 100}%)`;
-                
-                // Atualizar conteúdo com transição suave
-                contentSections[currentSection].classList.remove('active');
-                
-                setTimeout(() => {
-                    contentSections[currentSection].style.display = 'none';
-                    contentSections[index].style.display = 'block';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
                     
-                    setTimeout(() => {
-                        contentSections[index].classList.add('active');
-                        currentSection = index;
-                        isTransitioning = false;
-                    }, 50);
-                }, 300);
+                    if (scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
+                });
             }
             
-            // Navegação por clique nos itens
-            navItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    updateActiveSection(index);
+            // Navegação suave ao clicar nos links
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 });
             });
             
-            // Navegação por teclado
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
-                    const nextSection = (currentSection + 1) % navItems.length;
-                    updateActiveSection(nextSection);
-                } else if (e.key === 'ArrowLeft') {
-                    const prevSection = (currentSection - 1 + navItems.length) % navItems.length;
-                    updateActiveSection(prevSection);
-                }
-            });
+            // Header fixo com efeito de transparência
+            const header = document.querySelector('.main-header');
             
-            // Removida a navegação por scroll para evitar bugs
-            
-            // Efeito de parallax no scroll do conteúdo
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const header = document.querySelector('.sliding-header');
+            window.addEventListener('scroll', function() {
+                updateActiveNav();
                 
-                if (scrolled > 100) {
-                    header.style.transform = `translateY(-${scrolled * 0.05}px)`;
+                if (window.scrollY > 100) {
+                    header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
                 } else {
-                    header.style.transform = 'translateY(0)';
+                    header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                    header.style.boxShadow = 'none';
                 }
             });
             
-            // Inicialização
-            contentSections.forEach((section, index) => {
-                if (index !== 0) {
-                    section.style.display = 'none';
-                }
+            // Animação de entrada dos elementos
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar elementos para animação
+            const animatedElements = document.querySelectorAll('.interest-card, .gallery-item, .contact-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
             });
             
-            // Garantir que a primeira seção esteja visível
-            setTimeout(() => {
-                contentSections[0].classList.add('active');
-            }, 100);
+            // Form submission
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Obrigado pela mensagem! Entrarei em contato em breve.');
+                contactForm.reset();
+            });
         });
     </script>
 </body>
