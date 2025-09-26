@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --accent-color: #fd79a8;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark-color), #1a1a1a);
+            color: var(--light-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Container principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        
+        /* Slider/Carousel */
+        .slider {
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+        }
+        
+        .slider.fullscreen {
+            width: 95%;
+            height: 95vh;
+            max-width: none;
+        }
+        
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        /* Estilo para telas horizontais */
+        @media (orientation: landscape) {
+            .slides {
+                flex-direction: row;
+            }
+            
+            .slide {
+                min-width: 100%;
+                height: 100%;
+            }
+        }
+        
+        /* Estilo para telas verticais */
+        @media (orientation: portrait) {
+            .slides {
+                flex-direction: column;
+            }
+            
+            .slide {
+                min-height: 100%;
+                width: 100%;
+            }
+        }
+        
+        .slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            background: rgba(45, 52, 54, 0.8);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+        }
+        
+        .slide-content {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .slide p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .slide ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .slide li {
+            margin-bottom: 10px;
+        }
+        
+        /* Navegação do slider */
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-dot.active {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        /* Botão de expansão */
+        .expand-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: var(--transition);
+        }
+        
+        .expand-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        /* Conteúdo expandido */
+        .expanded-content {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(45, 52, 54, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .expanded-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .expanded-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .expanded-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Ícones e elementos visuais */
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title i {
+            color: var(--accent-color);
+        }
+        
+        /* Responsividade adicional */
+        @media (max-width: 768px) {
+            .slide h2 {
+                font-size: 2rem;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+            
+            .slider {
+                width: 95%;
+                height: 85vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slider" id="slider">
+            <div class="slides" id="slides">
+                <!-- Slide 1: Apresentação -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <i class="fas fa-user icon"></i>
+                        <h2>Sobre Mim</h2>
+                        <p>Olá! Sou um entusiasta da criatividade em todas as suas formas. Este portfólio é um reflexo dos meus interesses e paixões.</p>
+                        <p>Amo explorar diferentes formas de expressão artística, desde filmes e animações até música e artes plásticas.</p>
+                        <p>Use os controles abaixo para navegar pelo meu universo criativo!</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Live-action -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <i class="fas fa-film icon"></i>
+                        <h2>Live-Action</h2>
+                        <p>Adoro cinema e produções live-action que contam histórias cativantes. Meus gêneros favoritos incluem:</p>
+                        <ul>
+                            <li>Drama psicológico</li>
+                            <li>Ficção científica</li>
+                            <li>Fantasia</li>
+                            <li>Documentários criativos</li>
+                        </ul>
+                        <p>Algumas produções que me marcaram recentemente: "Duna", "Everything Everywhere All at Once", e "The Last of Us".</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Animação -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <i class="fas fa-paint-brush icon"></i>
+                        <h2>Animação</h2>
+                        <p>A animação é uma das minhas paixões mais antigas. Admiro a capacidade de contar histórias através de movimentos e arte.</p>
+                        <ul>
+                            <li>Animação japonesa (Studio Ghibli, Makoto Shinkai)</li>
+                            <li>Animação ocidental (Pixar, Laika)</li>
+                            <li>Animações independentes e experimentais</li>
+                        </ul>
+                        <p>Algumas animações que considero obras-primas: "Spirited Away", "Spider-Man: Into the Spider-Verse", e "The Iron Giant".</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Música -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <i class="fas fa-music icon"></i>
+                        <h2>Música</h2>
+                        <p>A música é a trilha sonora da minha vida. Gosto de explorar diferentes gêneros e descobrir novos artistas.</p>
+                        <ul>
+                            <li>Rock alternativo e indie</li>
+                            <li>Eletrônica e synthwave</li>
+                            <li>Jazz e bossa nova</li>
+                            <li>Trilhas sonoras de filmes e jogos</li>
+                        </ul>
+                        <p>Alguns artistas que sempre estão na minha playlist: Tame Impala, Daft Punk, Tom Misch, e Hans Zimmer.</p>
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Artes Plásticas -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <i class="fas fa-palette icon"></i>
+                        <h2>Artes Plásticas</h2>
+                        <p>As artes plásticas me fascinam pela capacidade de transmitir emoções e ideias através de formas, cores e texturas.</p>
+                        <ul>
+                            <li>Pintura clássica e contemporânea</li>
+                            <li>Escultura e instalações</li>
+                            <li>Arte digital e ilustração</li>
+                            <li>Fotografia artística</li>
+                        </ul>
+                        <p>Alguns artistas que admiro: Van Gogh, Frida Kahlo, Yayoi Kusama, e Banksy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navegação por pontos -->
+            <div class="slider-nav" id="sliderNav">
+                <div class="nav-dot active" data-slide="0"></div>
+                <div class="nav-dot" data-slide="1"></div>
+                <div class="nav-dot" data-slide="2"></div>
+                <div class="nav-dot" data-slide="3"></div>
+                <div class="nav-dot" data-slide="4"></div>
+            </div>
+            
+            <!-- Botão de expansão -->
+            <button class="expand-btn" id="expandBtn">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+        
+        <!-- Conteúdo expandido -->
+        <div class="expanded-content" id="expandedContent">
+            <h3>Detalhes Adicionais</h3>
+            <p>Aqui você pode adicionar informações mais detalhadas sobre seus projetos, experiências ou qualquer outro conteúdo que não coube nos slides.</p>
+            <p>Por exemplo, você pode listar:</p>
+            <ul>
+                <li>Experiências profissionais relevantes</li>
+                <li>Projetos pessoais ou colaborativos</li>
+                <li>Habilidades técnicas específicas</li>
+                <li>Certificações ou cursos realizados</li>
+                <li>Contatos e links para suas redes sociais</li>
+            </ul>
+            <p>Este espaço se expande quando o usuário clica no botão de expansão, permitindo uma experiência mais imersiva sem comprometer o design clean do slider principal.</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuração do slider
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const slides = document.getElementById('slides');
+            const sliderNav = document.getElementById('sliderNav');
+            const navDots = document.querySelectorAll('.nav-dot');
+            const expandBtn = document.getElementById('expandBtn');
+            const expandedContent = document.getElementById('expandedContent');
+            
+            let currentSlide = 0;
+            let isExpanded = false;
+            let isLandscape = window.innerWidth > window.innerHeight;
+            
+            // Função para atualizar a posição do slider
+            function updateSlider() {
+                if (isLandscape) {
+                    slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                } else {
+                    slides.style.transform = `translateY(-${currentSlide * 100}%)`;
+                }
+                
+                // Atualizar dots de navegação
+                navDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            // Navegação por dots
+            navDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    currentSlide = parseInt(this.getAttribute('data-slide'));
+                    updateSlider();
+                });
+            });
+            
+            // Navegação por teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    currentSlide = (currentSlide + 1) % navDots.length;
+                    updateSlider();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    currentSlide = (currentSlide - 1 + navDots.length) % navDots.length;
+                    updateSlider();
+                }
+            });
+            
+            // Navegação por swipe (para dispositivos touch)
+            let touchStartX = 0;
+            let touchStartY = 0;
+            
+            slider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            });
+            
+            slider.addEventListener('touchend', function(e) {
+                const touchEndX = e.changedTouches[0].screenX;
+                const touchEndY = e.changedTouches[0].screenY;
+                const diffX = touchStartX - touchEndX;
+                const diffY = touchStartY - touchEndY;
+                
+                // Determinar a direção do swipe
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    // Swipe horizontal
+                    if (diffX > 50) {
+                        // Swipe para a esquerda
+                        currentSlide = (currentSlide + 1) % navDots.length;
+                    } else if (diffX < -50) {
+                        // Swipe para a direita
+                        currentSlide = (currentSlide - 1 + navDots.length) % navDots.length;
+                    }
+                } else {
+                    // Swipe vertical
+                    if (diffY > 50) {
+                        // Swipe para cima
+                        currentSlide = (currentSlide + 1) % navDots.length;
+                    } else if (diffY < -50) {
+                        // Swipe para baixo
+                        currentSlide = (currentSlide - 1 + navDots.length) % navDots.length;
+                    }
+                }
+                
+                updateSlider();
+            });
+            
+            // Botão de expansão
+            expandBtn.addEventListener('click', function() {
+                isExpanded = !isExpanded;
+                
+                if (isExpanded) {
+                    slider.classList.add('fullscreen');
+                    expandedContent.classList.add('active');
+                    expandBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    slider.classList.remove('fullscreen');
+                    expandedContent.classList.remove('active');
+                    expandBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            });
+            
+            // Detectar mudança de orientação
+            window.addEventListener('resize', function() {
+                const newIsLandscape = window.innerWidth > window.innerHeight;
+                
+                if (newIsLandscape !== isLandscape) {
+                    isLandscape = newIsLandscape;
+                    updateSlider();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
