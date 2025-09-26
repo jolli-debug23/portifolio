@@ -80,7 +80,7 @@
         
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .nav-item {
@@ -90,6 +90,8 @@
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
+            font-size: 0.9rem;
+            white-space: nowrap;
         }
         
         .nav-item:hover, .nav-item.active {
@@ -326,6 +328,59 @@
             color: var(--accent-color);
         }
         
+        /* Art Sections */
+        .art-section {
+            margin-bottom: 4rem;
+        }
+        
+        .art-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .art-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        
+        .art-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .art-image {
+            height: 350px;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+        
+        .art-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: linear-gradient(45deg, #1a1a1a, #252525);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem;
+        }
+        
         /* Gallery Section */
         .gallery-grid {
             display: grid;
@@ -345,18 +400,6 @@
         
         .gallery-item:hover {
             transform: scale(1.03);
-        }
-        
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: linear-gradient(45deg, #1a1a1a, #252525);
-            color: var(--text-secondary);
         }
         
         /* Contact Section */
@@ -487,8 +530,18 @@
         }
         
         /* Responsividade */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .nav-item {
+                font-size: 0.85rem;
+            }
+        }
+        
         @media (max-width: 992px) {
-            .about-content, .contact-content {
+            .about-content, .contact-content, .art-content {
                 grid-template-columns: 1fr;
             }
             
@@ -499,13 +552,13 @@
             .section-title {
                 font-size: 2.2rem;
             }
-        }
-        
-        @media (max-width: 768px) {
+            
             .nav-menu {
                 display: none;
             }
-            
+        }
+        
+        @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.2rem;
             }
@@ -535,6 +588,10 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .about-image, .art-image {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -546,8 +603,11 @@
             <nav class="nav-menu">
                 <a href="#home" class="nav-item active">Início</a>
                 <a href="#about" class="nav-item">Sobre</a>
-                <a href="#interests" class="nav-item">Interesses</a>
-                <a href="#gallery" class="nav-item">Galeria</a>
+                <a href="#live-action" class="nav-item">Live-Action</a>
+                <a href="#animacao" class="nav-item">Animação</a>
+                <a href="#artes" class="nav-item">Artes Plásticas</a>
+                <a href="#jogos" class="nav-item">Jogos</a>
+                <a href="#projetos" class="nav-item">Projetos</a>
                 <a href="#contact" class="nav-item">Contato</a>
             </nav>
         </header>
@@ -556,8 +616,8 @@
         <section class="hero" id="home">
             <div class="hero-content">
                 <h1 class="hero-title">Olá, eu sou <span style="color: var(--accent-color);">Seu Nome</span></h1>
-                <p class="hero-subtitle">Designer & Entusiasta Criativo</p>
-                <p class="hero-description">Sou apaixonado por live-action, animação, música e artes plásticas. Este portfólio é um reflexo dos meus interesses e experiências.</p>
+                <p class="hero-subtitle">Graduando em Sistemas de Informação e desenvolvedor em formação</p>
+                <p class="hero-description">Estudo no IFMA desde 2023, com foco em programação e desenvolvimento de jogos. Apaixonado por tecnologia, arte e criação de experiências interativas.</p>
                 <a href="#about" class="btn">Conheça mais</a>
             </div>
         </section>
@@ -568,132 +628,156 @@
             <section class="section" id="about">
                 <div class="section-header">
                     <h2 class="section-title">Sobre Mim</h2>
-                    <p class="section-subtitle">Um pouco da minha jornada e experiências</p>
+                    <p class="section-subtitle">Minha jornada na tecnologia e desenvolvimento</p>
                 </div>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>Olá! Meu nome é [Seu Nome] e sou um entusiasta criativo com paixão por diversas formas de arte e expressão. Minha jornada começou cedo, explorando diferentes meios de comunicação visual e sonora.</p>
-                        <p>Ao longo dos anos, desenvolvi habilidades em design, animação e produção musical, sempre buscando conectar diferentes disciplinas para criar experiências únicas.</p>
-                        <p>Acredito que a criatividade é uma ferramenta poderosa para conectar pessoas e ideias, e estou sempre em busca de novos projetos e colaborações.</p>
+                        <p>Atualmente cursando Sistemas de Informação no IFMA, iniciei minha jornada na programação em 2023 e desde então venho me dedicando ao desenvolvimento de software e jogos.</p>
+                        <p>Meu foco principal é no desenvolvimento full-stack e na criação de jogos, com especial interesse em roguelikes e experiências narrativas imersivas. Tenho explorado tecnologias como JavaScript, Python, Unity e Godot.</p>
+                        <p>Além da programação, mantenho um grande interesse por diversas formas de arte, que influenciam minha abordagem criativa no desenvolvimento de projetos.</p>
                         
                         <div class="skills">
-                            <span class="skill-tag">Design Gráfico</span>
-                            <span class="skill-tag">Animação</span>
-                            <span class="skill-tag">Edição de Vídeo</span>
-                            <span class="skill-tag">Produção Musical</span>
-                            <span class="skill-tag">Ilustração</span>
-                            <span class="skill-tag">Fotografia</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">Godot</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">UI/UX Design</span>
                         </div>
                     </div>
                     <div class="about-image">
                         <i class="fas fa-user fa-5x" style="color: var(--accent-color);"></i>
-                        <p>Sua foto aqui</p>
+                        <p>Foto em breve</p>
                     </div>
                 </div>
             </section>
             
-            <!-- Interests Section -->
-            <section class="section" id="interests">
+            <!-- Live-Action Section -->
+            <section class="section" id="live-action">
                 <div class="section-header">
-                    <h2 class="section-title">Meus Interesses</h2>
-                    <p class="section-subtitle">As áreas que mais me inspiram e motivam</p>
+                    <h2 class="section-title">Live-Action</h2>
+                    <p class="section-subtitle">A magia do cinema e suas narrativas</p>
                 </div>
-                <div class="interests-grid">
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-film"></i>
+                <div class="art-section">
+                    <div class="art-content">
+                        <div class="art-text">
+                            <p>O cinema sempre foi uma paixão, especialmente filmes que exploram conceitos complexos através de narrativas visuais poderosas. Diretores como Denis Villeneuve e Christopher Nolan me inspiram pela maneira como equilibram grandiosidade visual com profundidade temática.</p>
+                            <p>Admiro particularmente a capacidade do cinema de criar mundos imersivos que transportam o espectador para realidades alternativas, algo que tento incorporar em meus próprios projetos de desenvolvimento.</p>
+                            <p><strong>Obras favoritas:</strong> Duna, Interestelar, Blade Runner 2049, O Poço</p>
                         </div>
-                        <h3 class="interest-title">Live-Action</h3>
-                        <p class="interest-description">Adoro cinema e produções audiovisuais que contam histórias cativantes através de performances reais.</p>
-                        <ul class="interest-list">
-                            <li>Drama e ficção científica</li>
-                            <li>Diretores: Villeneuve, Nolan, Wes Anderson</li>
-                            <li>Produções favoritas: Duna, Interestelar</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-paint-brush"></i>
+                        <div class="art-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-film fa-3x"></i>
+                                <p>Imagem de cena favorita</p>
+                            </div>
                         </div>
-                        <h3 class="interest-title">Animação</h3>
-                        <p class="interest-description">A animação me fascina pela liberdade criativa e pela capacidade de dar vida ao imaginário.</p>
-                        <ul class="interest-list">
-                            <li>Animação tradicional e digital</li>
-                            <li>Estúdios: Ghibli, Pixar, Studio Laika</li>
-                            <li>Favoritos: Spirited Away, Spider-Verse</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-music"></i>
-                        </div>
-                        <h3 class="interest-title">Música</h3>
-                        <p class="interest-description">A música é a trilha sonora da minha vida, explorando diferentes gêneros e descobrindo novos artistas.</p>
-                        <ul class="interest-list">
-                            <li>Indie rock, jazz, eletrônica</li>
-                            <li>Artistas: Tame Impala, Hiatus Kaiyote</li>
-                            <li>Produção e composição</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="interest-card">
-                        <div class="interest-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="interest-title">Artes Plásticas</h3>
-                        <p class="interest-description">As artes plásticas me encantam pela capacidade de transmitir emoções através de formas e cores.</p>
-                        <ul class="interest-list">
-                            <li>Pintura e ilustração digital</li>
-                            <li>Artistas: Van Gogh, Frida Kahlo</li>
-                            <li>Exploração de técnicas mistas</li>
-                        </ul>
                     </div>
                 </div>
             </section>
             
-            <!-- Gallery Section -->
-            <section class="section" id="gallery">
+            <!-- Animação Section -->
+            <section class="section" id="animacao">
                 <div class="section-header">
-                    <h2 class="section-title">Galeria</h2>
-                    <p class="section-subtitle">Alguns dos meus trabalhos e inspirações</p>
+                    <h2 class="section-title">Animação</h2>
+                    <p class="section-subtitle">Arte em movimento e expressão</p>
+                </div>
+                <div class="art-section">
+                    <div class="art-content">
+                        <div class="art-text">
+                            <p>A animação representa para mim a liberdade criativa em sua forma mais pura. Desde a infância, fui fascinado pela capacidade de dar vida ao imaginário através do movimento e da arte sequencial.</p>
+                            <p>Estúdios como Studio Ghibli e Pixar me inspiram pela maneira como criam narrativas emocionantes que ressoam com todas as idades, enquanto produções independentes demonstram o potencial ilimitado do meio.</p>
+                            <p><strong>Obras favoritas:</strong> A Viagem de Chihiro, Homem-Aranha no Aranhaverso, O Castelo Animado, Klaus</p>
+                        </div>
+                        <div class="art-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-paint-brush fa-3x"></i>
+                                <p>Arte conceitual ou frame favorito</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Artes Plásticas Section -->
+            <section class="section" id="artes">
+                <div class="section-header">
+                    <h2 class="section-title">Artes Plásticas</h2>
+                    <p class="section-subtitle">Forma, cor e expressão visual</p>
+                </div>
+                <div class="art-section">
+                    <div class="art-content">
+                        <div class="art-text">
+                            <p>As artes plásticas me fascinam pela capacidade de transmitir emoções e ideias complexas através de elementos visuais. Desde o impressionismo até a arte contemporânea, cada movimento oferece uma perspectiva única sobre a experiência humana.</p>
+                            <p>Artistas como Van Gogh e Frida Kahlo me inspiram pela intensidade emocional de suas obras, enquanto o surrealismo de Dalí e Magritte expande as possibilidades da imaginação.</p>
+                            <p><strong>Artistas favoritos:</strong> Van Gogh, Frida Kahlo, Salvador Dalí, Yayoi Kusama</p>
+                        </div>
+                        <div class="art-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-palette fa-3x"></i>
+                                <p>Obra de arte favorita</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Jogos Section -->
+            <section class="section" id="jogos">
+                <div class="section-header">
+                    <h2 class="section-title">Jogos</h2>
+                    <p class="section-subtitle">Interatividade, narrativa e desafio</p>
+                </div>
+                <div class="art-section">
+                    <div class="art-content">
+                        <div class="art-text">
+                            <p>Os jogos representam a convergência perfeita entre minha paixão por tecnologia e narrativa. Tenho especial interesse no desenvolvimento de roguelikes, gênero que combina gameplay estratégico com progression systems interessantes.</p>
+                            <p>Atualmente, estou trabalhando no conceito de um roguelike com elementos de crafting e exploração, inspirado em títulos como Hades, Dead Cells e Risk of Rain 2. A trilha sonora é um aspecto fundamental, com influências de compositores como Darren Korb e Chris Christodoulou.</p>
+                            <p><strong>Jogos favoritos:</strong> Hades, Hollow Knight, Celeste, Outer Wilds, Disco Elysium</p>
+                        </div>
+                        <div class="art-image">
+                            <div class="image-placeholder">
+                                <i class="fas fa-gamepad fa-3x"></i>
+                                <p>Screenshot de projeto em desenvolvimento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Projects Section -->
+            <section class="section" id="projetos">
+                <div class="section-header">
+                    <h2 class="section-title">Projetos</h2>
+                    <p class="section-subtitle">Alguns dos meus trabalhos em desenvolvimento</p>
                 </div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-image fa-2x"></i>
-                            <p>Projeto de Design</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-video fa-2x"></i>
-                            <p>Animacao</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-music fa-2x"></i>
-                            <p>Projeto Musical</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-paint-brush fa-2x"></i>
-                            <p>Arte Digital</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <i class="fas fa-camera fa-2x"></i>
-                            <p>Fotografia</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
+                        <div class="image-placeholder">
                             <i class="fas fa-code fa-2x"></i>
-                            <p>Projeto Web</p>
+                            <p>Projeto de API REST</p>
+                            <small>Python/Flask</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-placeholder">
+                            <i class="fas fa-gamepad fa-2x"></i>
+                            <p>Protótipo de Roguelike</p>
+                            <small>Godot Engine</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-placeholder">
+                            <i class="fas fa-mobile-alt fa-2x"></i>
+                            <p>App de Tarefas</p>
+                            <small>React Native</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-placeholder">
+                            <i class="fab fa-github fa-2x"></i>
+                            <p>Repositórios no GitHub</p>
+                            <small>Vários projetos</small>
                         </div>
                     </div>
                 </div>
@@ -713,17 +797,17 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Email</h3>
-                                <p>seuemail@exemplo.com</p>
+                                <p>seu.email@exemplo.com</p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
+                                <i class="fab fa-github"></i>
                             </div>
                             <div class="contact-text">
-                                <h3>Telefone</h3>
-                                <p>(11) 99999-9999</p>
+                                <h3>GitHub</h3>
+                                <p>github.com/seuusuario</p>
                             </div>
                         </div>
                         
@@ -733,22 +817,22 @@
                             </div>
                             <div class="contact-text">
                                 <h3>Localização</h3>
-                                <p>São Paulo, Brasil</p>
+                                <p>São Luís, MA</p>
                             </div>
                         </div>
                         
                         <div class="social-links">
                             <a href="#" class="social-link">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="social-link">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                             <a href="#" class="social-link">
-                                <i class="fab fa-github"></i>
+                                <i class="fab fa-instagram"></i>
                             </a>
                             <a href="#" class="social-link">
-                                <i class="fab fa-behance"></i>
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-spotify"></i>
                             </a>
                         </div>
                     </div>
@@ -761,7 +845,7 @@
                         
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" id="email" class="form-input" placeholder="seuemail@exemplo.com">
+                            <input type="email" id="email" class="form-input" placeholder="seu.email@exemplo.com">
                         </div>
                         
                         <div class="form-group">
@@ -839,7 +923,7 @@
                 updateActiveNav();
                 
                 if (window.scrollY > 100) {
-                    header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                    header.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
                     header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
                 } else {
                     header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
@@ -863,7 +947,7 @@
             }, observerOptions);
             
             // Observar elementos para animação
-            const animatedElements = document.querySelectorAll('.interest-card, .gallery-item, .contact-item');
+            const animatedElements = document.querySelectorAll('.interest-card, .gallery-item, .art-content');
             animatedElements.forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
